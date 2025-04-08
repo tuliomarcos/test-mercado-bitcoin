@@ -18,7 +18,6 @@
       <Input v-model="formData.openDate" label="Data de abertura" type="date" :error="errors.openDate" />
     </template>
 
-
     <Input v-model="formData.phone" label="Telefone" type="text" :error="errors.phone" />
   </div>
 </template>

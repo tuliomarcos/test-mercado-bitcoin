@@ -4,14 +4,22 @@
       <p>Etapa <span class="current-step">{{ currentStep + 1 }}</span> de {{ totalSteps }}</p>
       <h2>Revise suas informações</h2>
     </div>
-
+    
     <Input v-model="formData.email" label="Endereço de e-mail" type="text" :error="errors.email" />
-    <Input v-model="formData.name" label="Nome" type="text" :error="errors.name" />
-    <Input v-model="formData.document" label="CPF" type="text" :error="errors.document" />
-    <Input v-model="formData.age" label="Data de nascimento" type="date" :error="errors.age" />
+
+    <template v-if="accountType === 'PF'">
+      <Input v-model="formData.name" label="Nome" type="text" :error="errors.name" />
+      <Input v-model="formData.document" label="CPF" type="text" :error="errors.document" />
+      <Input v-model="formData.age" label="Data de nascimento" type="date" :error="errors.age" />
+    </template>
+    <template v-else>
+      <Input v-model="formData.companyName" label="Razão social" type="text" :error="errors.companyName" />
+      <Input v-model="formData.document" label="CNPJ" type="text" :error="errors.document" />
+      <Input v-model="formData.openDate" label="Data de abertura" type="date" :error="errors.openDate" />
+    </template>
+
     <Input v-model="formData.phone" label="Telefone" type="text" :error="errors.phone" />
     <Input v-model="formData.password" label="Senha" type="text" :error="errors.password" />
-
   </div>
 </template>
 
