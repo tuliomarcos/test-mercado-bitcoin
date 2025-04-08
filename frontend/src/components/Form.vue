@@ -13,13 +13,13 @@ import Stepper from '../components/Form/Stepper.vue'
 import FirstStep from './Form/steps/FirstStep.vue'
 import SecondStep from './Form/steps/SecondStep.vue'
 import ThirdStep from './Form/steps/ThirdStep.vue'
-import FourthStepPF from './Form/steps/FourthStepPF.vue'
+import FourthStep from './Form/steps/FourthStep.vue'
 import { provide, ref, shallowRef, watch } from 'vue'
 import { useForm } from '../composables/useForm'
 import { ApiClient } from '../utils/ApiClient'
 import Button from './Form/Button.vue'
 
-const steps  = shallowRef([FirstStep, SecondStep, ThirdStep, FourthStepPF])
+const steps  = shallowRef([FirstStep, SecondStep, ThirdStep, FourthStep])
 const { formData } = useForm()
 const stepper = ref()
 const successMessage = ref('')
