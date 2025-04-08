@@ -2,12 +2,9 @@
   <div class="input-wrapper">
     <label v-if="label" :for="id" class="input-label">{{ label }}</label>
     <input
-      :id="id"
+      v-bind="$attrs"
       :class="['input-field', { 'input-error': error }]"
-      :type="type"
       :value="modelValue"
-      :placeholder="placeholder"
-      :disabled="disabled"
       @input="$emit('update:modelValue', $event.target.value)"
       @blur="$emit('blur', $event)"
       @focus="$emit('focus', $event)"
@@ -25,22 +22,6 @@ defineProps({
   label: {
     type: String,
     default: '',
-  },
-  type: {
-    type: String,
-    default: 'text',
-  },
-  placeholder: {
-    type: String,
-    default: '',
-  },
-  id: {
-    type: String,
-    default: '',
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
   },
   error: {
     type: String,
