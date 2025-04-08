@@ -16,15 +16,10 @@ app.get('/registration', (req, res) => {
 
 app.post('/registration', (req, res) => {
   const data = req.body
-  
-  if (!data.accountType || (data.accountType !== 'pf' && data.accountType !== 'pj')) {
-    return res.status(400).json({ message: 'Tipo de conta inválido ou ausente (pf ou pj)' })
-  }
-
   let requiredFields = ['email', 'password', 'name', 'document', 'age', 'phone', 'accountType']
-
-  if (data.accountType === 'pj') {
-    requiredFields = ['email', 'password', 'document', 'accountType', 'phone', 'companyName', 'openDate']
+  
+  if (!data.accountType || (data.accountType !== 'PF' && data.accountType !== 'PJ')) {
+    return res.status(400).json({ message: 'Tipo de conta inválido ou ausente (PF ou PJ)' })
   }
 
   const missingFields = requiredFields.filter(field => !data[field])
