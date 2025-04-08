@@ -9,11 +9,11 @@
 
     <div class="input-group account-type">
       <div class="input-group-radio">
-        <input type="radio" id="individual" value="pf" v-model="formData.accountType" :checked="formData.accountType !== 'pj'" />
+        <input type="radio" id="individual" value="PF" v-model="formData.accountType" :checked="formData.accountType !== 'PJ'" />
         <label for="individual">Pessoa física</label>
       </div>
       <div class="input-group-radio">
-        <input type="radio" id="company" value="pj" v-model="formData.accountType" />
+        <input type="radio" id="company" value="PJ" v-model="formData.accountType" />
         <label for="company">Pessoa jurídica</label>
       </div>
     </div>
