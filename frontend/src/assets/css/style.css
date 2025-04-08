@@ -1,0 +1,63 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  width: 100%;
+}
+
+#app {
+  width: 100%;
+}
+
+.step-info {
+  margin-bottom: 2rem;
+}
+
+.step-info p, .step-info h2{
+  margin: 0px;
+  color: #000;
+}
+
+.step-info .current-step {
+  color: #ffaa2a;
+}
+
+@keyframes sliderRight {
+  from {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes sliderLeft {
+  from {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes swiperUp {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}

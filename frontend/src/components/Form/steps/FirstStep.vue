@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { inject, reactive } from 'vue'
+import { inject, reactive, watch } from 'vue'
 import Input from '../Input.vue';
 import { isEmail, isRequired } from '../../../utils/validator';
 
@@ -43,6 +43,17 @@ function validate() {
 
   return valid
 }
+
+watch(
+  () => formData.accountType,
+  (val) => {
+    formData.document = "";
+    formData.age = "";
+    formData.name = "";
+    formData.phone = "";
+  }
+);
+
 
 defineExpose({ validate })
 </script>
