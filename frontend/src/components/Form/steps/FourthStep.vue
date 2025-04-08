@@ -13,9 +13,9 @@
       <Input v-model="formData.age" label="Data de nascimento" type="date" :error="errors.age" />
     </template>
     <template v-else>
-      <Input v-model="formData.companyName" label="Razão social" type="text" :error="errors.companyName" />
+      <Input v-model="formData.name" label="Razão social" type="text" :error="errors.companyName" />
       <Input v-model="formData.document" label="CNPJ" type="text" :error="errors.document" />
-      <Input v-model="formData.openDate" label="Data de abertura" type="date" :error="errors.openDate" />
+      <Input v-model="formData.age" label="Data de abertura" type="date" :error="errors.openDate" />
     </template>
 
     <Input v-model="formData.phone" label="Telefone" type="text" :error="errors.phone" />
