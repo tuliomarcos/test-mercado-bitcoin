@@ -11,15 +11,15 @@ export function isEmail(value) {
 }
 
 export function isCpf(value) {
-  return /^\d{11}$/.test(value) ? '' : 'CPF inválido.'
+  return /^\d{3}\.?\d{3}\.?\d{3}\-?\d{2}$/.test(value) ? '' : 'CPF inválido.'
 }
 
 export function isCNPJ(value) {
-  return /^\d{14}$/.test(value) ? '' : 'CNPJ inválido'
+  return /^([0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}|[0-9]{2}\.?[0-9]{3}\.?[0-9]{3}\/?[0-9]{4}\-?[0-9]{2})$/.test(value) ? '' : 'CNPJ inválido'
 }
 
 export function isPhone(value) {
-  return /^\d{10,11}$/.test(value) ? '' : 'Telefone inválido.'
+  return /^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$/.test(value) ? '' : 'Telefone inválido.'
 }
 
 export function isPassword(value) {
