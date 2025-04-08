@@ -2,23 +2,23 @@
   <div class="container">
     <div class="step-info">
       <p>Etapa <span class="current-step">{{ currentStep + 1 }}</span> de {{ totalSteps }}</p>
-      <h2 v-if="accountType === 'PF'">Pessoa Física</h2>
+      <h2 v-if="formData.accountType === 'PF'">Pessoa Física</h2>
       <h2 v-else>Pessoa Jurídica</h2>
     </div>
 
-    <template v-if="accountType === 'PF'">
+    <template v-if="formData.accountType === 'PF'">
       <Input v-model="formData.name" label="Nome" type="text" :error="errors.name" />
-      <Input v-model="formData.document" label="CPF" type="text" :error="errors.document" />
+      <Input v-model="formData.document" label="CPF" maxlength="14" type="text" :error="errors.document" />
       <Input v-model="formData.age" label="Data de nascimento" type="date" :error="errors.age" />
     </template>
 
     <template v-else>
-      <Input v-model="formData.companyName" label="Razão social" type="text" :error="errors.companyName" />
-      <Input v-model="formData.document" label="CNPJ" type="text" :error="errors.document" />
-      <Input v-model="formData.openDate" label="Data de abertura" type="date" :error="errors.openDate" />
+      <Input v-model="formData.name" label="Razão social" type="text" :error="errors.name" />
+      <Input v-model="formData.document" label="CNPJ" type="text" maxlength="18" :error="errors.document" />
+      <Input v-model="formData.age" label="Data de abertura" type="date" :error="errors.age" />
     </template>
 
-    <Input v-model="formData.phone" label="Telefone" type="text" :error="errors.phone" />
+    <Input v-model="formData.phone" label="Telefone" type="text" :error="errors.phone" maxlength="15" />
   </div>
 </template>
 
@@ -42,11 +42,11 @@ function validate() {
   Object.keys(errors).forEach(key => (errors[key] = ''))
 
   if (formData.accountType === "PF") {
-    errors.name = isRequired(formData.name, 'Nome') || minLength(formData.name, 3, 'Nome')
+    errors.name = isRequired(formData.name, 'Nome') || minLength(formData.name, 6, 'Nome')
     errors.document = isRequired(formData.document, 'CPF') || isCpf(formData.document)
     errors.age = isRequired(formData.age, 'Data de nascimento')
   } else {
-    errors.name = isRequired(formData.name, 'Razão social') || minLength(formData.name, 3, 'Razão social')
+    errors.name = isRequired(formData.name, 'Razão social') || minLength(formData.name, 6, 'Razão social')
     errors.document = isRequired(formData.document, 'CNPJ') || isCNPJ(formData.document)
     errors.age = isRequired(formData.age, 'Data de abertura')  
   }
@@ -63,7 +63,7 @@ function validate() {
 watch(
   () => formData.document,
   (val) => {
-    formData.document = formData.accountType === 'pf' ? formatCpf(val) : formatCnpj(val);
+    formData.document = formData.accountType === 'PF' ? formatCpf(val) : formatCnpj(val);
   }
 );
 
