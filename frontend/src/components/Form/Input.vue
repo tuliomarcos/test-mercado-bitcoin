@@ -1,58 +1,89 @@
 <template>
-	<button :class="['button', buttonStyle]" :type="type">
-		<slot />
-	</button>
+  <div class="input-wrapper">
+    <label v-if="label" :for="id" class="input-label">{{ label }}</label>
+    <input
+      :id="id"
+      :class="['input-field', { 'input-error': error }]"
+      :type="type"
+      :value="modelValue"
+      :placeholder="placeholder"
+      :disabled="disabled"
+      @input="$emit('update:modelValue', $event.target.value)"
+      @blur="$emit('blur', $event)"
+      @focus="$emit('focus', $event)"
+    />
+    <p v-if="error" class="input-error-message">{{ error }}</p>
+  </div>
 </template>
 
 <script setup>
-import { computed } from 'vue'
-
-const props = defineProps({
-	type: {
-		type: String,
-		default: 'button',
-	},
-	href: {
-		type: String,
-		default: null,
-	},
-	styleType: {
-		type: String,
-		default: 'primary',
-		validator: (value) => ['primary', 'secondary'].includes(value),
-	},
+defineProps({
+  modelValue: {
+    type: [String, Number],
+    required: true,
+  },
+  label: {
+    type: String,
+    default: '',
+  },
+  type: {
+    type: String,
+    default: 'text',
+  },
+  placeholder: {
+    type: String,
+    default: '',
+  },
+  id: {
+    type: String,
+    default: '',
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  error: {
+    type: String,
+    default: '',
+  },
 })
 
-const buttonStyle = computed(() => `button-${props.styleType}`)
+defineEmits(['update:modelValue', 'blur', 'focus'])
 </script>
 
 <style scoped>
-.button {
-	padding: 0.5rem 2rem;
-	font-size: 1rem;
-	border-radius: 5px;
-	border: none;
-	cursor: pointer;
-	text-decoration: none;
-	transition: 0.2s;
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
 }
 
-.button-primary {
-	background-color: #ff9900;
-	color: #fff;
+.input-label {
+  margin-bottom: 0.4rem;
+  font-size: 1rem;
+  color: #000;
 }
 
-.button-secondary {
-	background-color: #fff;
-	color: #ff9900;
-	border: 1px solid #ff9900;
+.input-field {
+  padding: 0.5rem;
+  border: 1px solid #000000;
+  border-radius: 5px;
+  font-size: 1rem;
 }
 
-.button:hover {
-	opacity: 0.9;
+.input-field:focus {
+  outline: none;
+  border-color: #007bff;
 }
 
-.button.full-width {
-	width: 100%;
+.input-error {
+  border-color: #dc3545;
+}
+
+.input-error-message {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0rem;
 }
 </style>
